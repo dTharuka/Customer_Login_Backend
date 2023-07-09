@@ -23,7 +23,7 @@ export default class LoginController{
                 return res.status(200).json({ message: "Login Sucess...!" ,responseData:token});
                 
             }else {
-                return res.status(200).json({ message: " hari data ewapan huttoooo...." });
+                return res.status(200).json({ message: " Wrong Data Entry...." });
               }
               
             } catch (error:unknown) {
