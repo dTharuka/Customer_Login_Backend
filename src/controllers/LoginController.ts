@@ -2,9 +2,11 @@
 import { Request, RequestHandler, Response } from "express";
 import { Customer } from "../models/Customer";
 import { Login } from "../models/Login";
+import jwt from 'jsonwebtoken';
 
 
-let token="9cfd6bf5b3d09bcc3fa918fcacf5e56405e1eac40d6fe4479775d80eb5ae8e2fc2b300081e038903ef6c677f04bf954c0a189e6cafdf2a013277851ea5c4e2b0"
+
+// let token="9cfd6bf5b3d09bcc3fa918fcacf5e56405e1eac40d6fe4479775d80eb5ae8e2fc2b300081e038903ef6c677f04bf954c0a189e6cafdf2a013277851ea5c4e2b0"
 
 export default class LoginController{
     loginUser: RequestHandler = async (req: Request, res: Response): Promise<Response> => {
@@ -19,8 +21,9 @@ export default class LoginController{
     
             if(customer){
                 
-    
-                return res.status(200).json({ message: "Login Sucess...!" ,responseData:token});
+                const accessToken=jwt.sign({customerID,customerEmail},process.env.ACCESS_TOKEN_SECRET as string);
+            
+                return res.status(200).json({ message: "Login Sucess...!" ,responseData:accessToken});
                 
             }else {
                 return res.status(200).json({ message: " Wrong Data Entry...." });

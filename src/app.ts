@@ -6,6 +6,7 @@ import db from "mongoose";
 import routes from "./routes";
 import { json, urlencoded } from "body-parser";
 import cors from "cors";
+// import jwt from "jsonwebtoken";
 
 const app=express();
 
